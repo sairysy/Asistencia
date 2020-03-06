@@ -10,5 +10,27 @@ package Entidades;
  * @author sairy
  */
 public class Ciudad {
-    
+  private int  idciudad;
+  private String nombreciudad;
+
+    public Ciudad() {
+    }
+
+    public int getIdciudad() {
+        return idciudad;
+    }
+
+    public void setIdciudad(int idciudad) {
+        this.idciudad = idciudad;
+    }
+
+    public String getNombreciudad() {
+        return nombreciudad;
+    }
+
+    public void setNombreciudad(String nombreciudad) {
+        this.nombreciudad = nombreciudad;
+    }
+   
+ 
 }
