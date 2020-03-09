@@ -16,6 +16,11 @@ public class Ciudad {
     public Ciudad() {
     }
 
+    public Ciudad(int idciudad, String nombreciudad) {
+        this.idciudad = idciudad;
+        this.nombreciudad = nombreciudad;
+    }
+
     public int getIdciudad() {
         return idciudad;
     }
