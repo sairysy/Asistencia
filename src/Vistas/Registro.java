@@ -140,8 +140,10 @@ public class Registro extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        InicioSesion iniciosesion= new InicioSesion();
-        iniciosesion.setVisible(true);
+//        InicioSesion iniciosesion= new InicioSesion();
+//        iniciosesion.setVisible(true);
+FrmCiudad frmciudad= new FrmCiudad();
+        frmciudad.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
