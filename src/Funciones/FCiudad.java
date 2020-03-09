@@ -25,11 +25,11 @@ public class FCiudad implements Serializable {
         boolean eje = false;
         try {
             ArrayList<accesodatos.Parametro> lstP = new ArrayList<accesodatos.Parametro>();
-            String sql = "select * from public.ciudad_insertar(?)";
+            String sql = "select * from public.ciudad_insertar(?,?)";
             
             
-           // lstP.add(new Parametro(1, nivel.getCodigo()));
-            lstP.add(new accesodatos.Parametro(1, ciudad.getNombreciudad()));
+            lstP.add(new accesodatos.Parametro(1, ciudad.getIdciudad()));
+            lstP.add(new accesodatos.Parametro(2, ciudad.getNombreciudad()));
             
             ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql, lstP);
             while (rs.next()) {
