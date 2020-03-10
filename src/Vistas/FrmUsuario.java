@@ -5,8 +5,8 @@
  */
 package Vistas;
 
-import Entidades.Ciudad;
-import Funciones.FCiudad;
+import Entidades.Usuario;
+import Funciones.FUsuario;
 import javax.swing.JOptionPane;
 import java.awt.event.ActionEvent;
 import java.sql.SQLException;
@@ -14,22 +14,23 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+//import javax.swing.table.DefaultTableModel;
+//import net.sf.jasperreports.engine.JRException;
+//import reportes.Reportes;
 
-
-public class FrmCiudad extends javax.swing.JFrame {
+public class FrmUsuario extends javax.swing.JFrame {
 
     /**
-     * Creates new form Ciudad
+     * Creates new form Usuario
      */
-    public FrmCiudad() {
+    public FrmUsuario() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
-  private void limpiarContCiudades() {
+  private void limpiarControles() {
         txtCodigo.setText("");
-        
         txtNombre.setText("");
-        
+        txtClave.setText("");
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -44,24 +45,25 @@ public class FrmCiudad extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
         lblBuscarCodigo = new javax.swing.JLabel();
-        txtBuscarcodigo = new javax.swing.JTextField();
+        txtCodigo = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        lblCodigofacultad1 = new javax.swing.JLabel();
+        lblCodigo = new javax.swing.JLabel();
         lblNombre = new javax.swing.JLabel();
-        txtCodigo = new javax.swing.JTextField();
+        lblCodigosicoa = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
+        txtClave = new javax.swing.JTextField();
         btnNuevo = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
         btnListar = new javax.swing.JButton();
         bntImprimir = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        TablaListarCiudad = new javax.swing.JTable();
+        TablaListarescuela = new javax.swing.JTable();
+        txtCodigobuscar = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(900, 450));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/FondoAzul.png"))); // NOI18N
         jLabel2.setText("jLabel1");
@@ -89,15 +91,15 @@ public class FrmCiudad extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 102));
-        jLabel4.setText("Ciudad");
+        jLabel4.setText("Usuario");
 
         lblBuscarCodigo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblBuscarCodigo.setForeground(new java.awt.Color(0, 0, 102));
         lblBuscarCodigo.setText("Codigo:");
 
-        txtBuscarcodigo.addActionListener(new java.awt.event.ActionListener() {
+        txtCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBuscarcodigoActionPerformed(evt);
+                txtCodigoActionPerformed(evt);
             }
         });
 
@@ -114,23 +116,27 @@ public class FrmCiudad extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(0, 0, 102));
         jLabel6.setText("Informacion");
 
-        lblCodigofacultad1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        lblCodigofacultad1.setForeground(new java.awt.Color(0, 0, 102));
-        lblCodigofacultad1.setText("Codigo:");
+        lblCodigo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblCodigo.setForeground(new java.awt.Color(0, 0, 102));
+        lblCodigo.setText("Codigo:");
 
         lblNombre.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblNombre.setForeground(new java.awt.Color(0, 0, 102));
         lblNombre.setText("Nombre:");
 
-        txtCodigo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCodigoActionPerformed(evt);
-            }
-        });
+        lblCodigosicoa.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblCodigosicoa.setForeground(new java.awt.Color(0, 0, 102));
+        lblCodigosicoa.setText("Clave:");
 
         txtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNombreActionPerformed(evt);
+            }
+        });
+
+        txtClave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtClaveActionPerformed(evt);
             }
         });
 
@@ -180,24 +186,30 @@ public class FrmCiudad extends javax.swing.JFrame {
             }
         });
 
-        TablaListarCiudad.setModel(new javax.swing.table.DefaultTableModel(
+        TablaListarescuela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Codigo", "Nombre"
+                "Codigo", "Nombre", "Clave"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        TablaListarCiudad.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
-        jScrollPane3.setViewportView(TablaListarCiudad);
+        TablaListarescuela.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        jScrollPane3.setViewportView(TablaListarescuela);
+
+        txtCodigobuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCodigobuscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -205,67 +217,63 @@ public class FrmCiudad extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(326, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addGap(512, 512, 512))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(87, 87, 87)
-                        .addComponent(jSeparator2))
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(25, 25, 25)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jSeparator1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel4)
-                                .addGap(585, 585, 585))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(lblCodigofacultad1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(layout.createSequentialGroup()
-                                                    .addGap(10, 10, 10)
-                                                    .addComponent(jLabel6))
-                                                .addGroup(layout.createSequentialGroup()
-                                                    .addComponent(lblBuscarCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addGap(40, 40, 40)
-                                                    .addComponent(txtBuscarcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(85, 85, 85)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addComponent(btnNuevo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(btnModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGap(61, 61, 61))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(79, 79, 79)
+                                        .addGap(14, 14, 14)
+                                        .addComponent(lblBuscarCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtCodigobuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(34, 34, 34)
+                                        .addComponent(btnBuscar))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(67, 67, 67)
+                                        .addComponent(jLabel6))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblCodigosicoa, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnNuevo)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnEliminar)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnModificar)))
+                                .addGap(7, 7, 7)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
                                         .addComponent(btnVolver)
-                                        .addGap(44, 44, 44)
+                                        .addGap(50, 50, 50)
                                         .addComponent(btnSalir)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnListar, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
-                                    .addComponent(bntImprimir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(235, 235, 235))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel1)
-                        .addGap(185, 185, 185)))
-                .addContainerGap(14, Short.MAX_VALUE))
+                                        .addGap(117, 117, 117))
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addComponent(jSeparator2))
+                .addGap(57, 57, 57)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(bntImprimir)
+                    .addComponent(btnListar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -273,51 +281,52 @@ public class FrmCiudad extends javax.swing.JFrame {
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41)
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(btnListar)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(bntImprimir))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(txtBuscarcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(btnBuscar)
-                                            .addComponent(lblBuscarCodigo))
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jLabel6)
-                                                .addGap(14, 14, 14)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                    .addComponent(lblCodigofacultad1)
-                                                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(28, 28, 28)
-                                                .addComponent(btnNuevo)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lblNombre)
-                                            .addComponent(btnModificar))
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btnEliminar)))
-                                .addGap(3, 3, 3)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(btnSalir)
-                                    .addComponent(btnVolver)))
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(lblBuscarCodigo)
+                                    .addComponent(txtCodigobuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnBuscar))
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel6)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblCodigo)
+                                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(22, 22, 22)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lblNombre)
+                                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lblCodigosicoa)
+                                    .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(bntImprimir)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnListar)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnNuevo)
+                            .addComponent(btnEliminar)
+                            .addComponent(btnModificar)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnVolver)
+                            .addComponent(btnSalir))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -333,34 +342,29 @@ System.exit(0);        // TODO add your handling code here:
 //        dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_btnVolverActionPerformed
 
-    private void txtBuscarcodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarcodigoActionPerformed
+    private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtBuscarcodigoActionPerformed
+    }//GEN-LAST:event_txtCodigoActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
         
-        FCiudad fciudad = new FCiudad();
-                
+        FUsuario fusuario = new FUsuario();
         try {
-            limpiarContCiudades();
-            ciudad = fciudad.ObtenerCiudadDadoCodigo(
-                Integer.parseInt(txtBuscarcodigo.getText()));
-            if (ciudad != null) {
-                txtCodigo.setText(Integer.toString(ciudad.getIdciudad()));
-                txtNombre.setText(ciudad.getNombreciudad());
+            limpiarControles();
+            usuario = fusuario.ObtenerUsuarioDadoCodigo(
+                Integer.parseInt(txtCodigobuscar.getText()));
+            if (usuario != null) {
+                txtCodigo.setText(Integer.toString(usuario.getIdusuario()));
+                txtNombre.setText(usuario.getNombreusuario());
+                txtClave.setText(usuario.getClaveusuario());
                 
-
             }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Error al buscar  ciudad!!",
+            JOptionPane.showMessageDialog(this, "Error al buscar el usuario!!",
                 "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
-
-    private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCodigoActionPerformed
 
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
         // TODO add your handling code here:
@@ -368,18 +372,18 @@ System.exit(0);        // TODO add your handling code here:
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         if (btnNuevo.getText().compareTo("Nuevo")==0) {
-             limpiarContCiudades();
+             limpiarControles();
             btnNuevo.setText("Registrar");
         }else{
             if(btnNuevo.getText().compareTo("Registrar")==0){
                 try {
-                    Ciudad ciudad = new Ciudad();
-                    FCiudad fciudad = new FCiudad();
-                    ciudad.setIdciudad(Integer.parseInt(txtCodigo.getText()));
-                    ciudad.setNombreciudad(txtNombre.getText());
-                   
-                    if(fciudad.Insertar(ciudad) ){
-                       limpiarContCiudades();
+                    Usuario usuario = new Usuario();
+                    FUsuario fusuario = new FUsuario();
+                    usuario.setIdusuario(Integer.parseInt(txtCodigo.getText()));
+                    usuario.setNombreusuario(txtNombre.getText());
+                    usuario.setClaveusuario(txtClave.getText());
+                    if(fusuario.Insertar(usuario) ){
+                       limpiarControles();
                         JOptionPane.showMessageDialog(this,"Registrado correctamente!!",
                             "Transacción correcta", JOptionPane.INFORMATION_MESSAGE);
                         btnNuevo.setText("Nuevo");
@@ -390,40 +394,43 @@ System.exit(0);        // TODO add your handling code here:
                 }
             }
         }
+        llenar();
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        FCiudad fciudad = new FCiudad();
+        FUsuario fusuario = new FUsuario();
         int confirmacion = JOptionPane.showConfirmDialog(this,
-            "¿Quiere eliminar el ciudad?", "Confirme",
+            "¿Quiere eliminar el usuario?", "Confirme",
             JOptionPane.YES_NO_OPTION);
         if (confirmacion == JOptionPane.YES_OPTION) {
             try {
-                if (fciudad.eliminar(ciudad) ) {
+                if (fusuario.eliminar(usuario) ) {
                     JOptionPane.showMessageDialog(this,
-                        "Ciudad eliminado correctamente!!",
+                        "Usuario eliminado correctamente!!",
                         "Transacción correcta", JOptionPane.INFORMATION_MESSAGE);
-                   limpiarContCiudades();
+                   limpiarControles();
                 }
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Error al eliminar el ciudad!!",
+                JOptionPane.showMessageDialog(this, "Error al eliminar el usuario!!",
                     "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
+        llenar();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        FCiudad fciudad = new FCiudad();
+        FUsuario fusuario = new FUsuario();
         int confirmacion = JOptionPane.showConfirmDialog(this,
-            "¿Quiere modificar el ciudad?", "Confirme",
+            "¿Quiere modificar la usuario?", "Confirme",
             JOptionPane.YES_NO_OPTION);
         if (confirmacion == JOptionPane.YES_OPTION) {
             try {
-                    ciudad.setIdciudad(Integer.parseInt(txtCodigo.getText()));                    
-                    ciudad.setNombreciudad(txtNombre.getText());
-                    
-                if(fciudad.actualizar(ciudad) ){
-                    JOptionPane.showMessageDialog(this,"Ciudad modificado correctamente!!",
+                usuario.setIdusuario(Integer.parseInt(txtCodigo.getText()));
+                usuario.setNombreusuario(txtNombre.getText());
+                usuario.setClaveusuario(txtClave.getText());
+                 
+                if(fusuario.actualizar(usuario) ){
+                    JOptionPane.showMessageDialog(this,"Usuario modificado correctamente!!",
                         "Transacción correcta", JOptionPane.INFORMATION_MESSAGE);
                 }
             } catch (Exception ex) {
@@ -431,28 +438,31 @@ System.exit(0);        // TODO add your handling code here:
                     "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
+        llenar();
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
-        DefaultTableModel modelo = (DefaultTableModel) TablaListarCiudad.getModel();
-        ArrayList<Ciudad> lista = new ArrayList<>();
-        try {
-            FCiudad fciudad = new FCiudad();
-            lista = fciudad.ObtenerCiudades();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage(),"Error",
-                JOptionPane.ERROR_MESSAGE);
-        }
-        for(Ciudad r : lista){
-            modelo.addRow(new Object[]{ r.getIdciudad(),r.getNombreciudad()});
-        }
+//        DefaultTableModel modelo = (DefaultTableModel) TablaListarusuario.getModel();
+//        ArrayList<Usuario> lista = new ArrayList<>();
+//        try {
+//            FUsuario fusuario = new FUsuario();
+//            lista = fusuario.ObtenerUsuarioes();
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(this, e.getMessage(),"Error",
+//                JOptionPane.ERROR_MESSAGE);
+//        }
+//        for(Usuario r : lista){
+//            modelo.addRow(new Object[]{ r.getCodigo(),r.getCodigo_facultad(),r.getNombre(),r.getDescripcion(),
+//                r.getCodigo_sicoa()});
+//        }
+      llenar();
     }//GEN-LAST:event_btnListarActionPerformed
 
     private void bntImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntImprimirActionPerformed
 //
 //        try {
 //            Reportes reporte = new Reportes();
-//            reporte.ReporteCiudades ();
+//            reporte.ReporteUsuario ();
 //        }catch (JRException ex) {
 //            Logger.getLogger(Reportes.class.getName()).log(Level.SEVERE, null , ex);
 //        }catch (SQLException ex){
@@ -460,6 +470,31 @@ System.exit(0);        // TODO add your handling code here:
 //        }
     }//GEN-LAST:event_bntImprimirActionPerformed
 
+    private void txtCodigobuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigobuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCodigobuscarActionPerformed
+
+    private void txtClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtClaveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtClaveActionPerformed
+     public void llenar(){
+DefaultTableModel modelo = (DefaultTableModel) TablaListarescuela.getModel();
+        ArrayList<Usuario> lista = new ArrayList<>();
+        try {
+            FUsuario fusuarios = new FUsuario();
+            lista = fusuarios.ObtenerUsuarios();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(),"Error",
+                JOptionPane.ERROR_MESSAGE);
+        }
+         int filas=TablaListarescuela.getRowCount()-1;
+            for(int i=filas; i>=0; i--){
+                modelo.removeRow(modelo.getRowCount()-1);
+            } 
+        for(Usuario p : lista){
+            modelo.addRow(new Object[]{ p.getIdusuario(),p.getNombreusuario(),p.getClaveusuario()});
+        }
+}        
     /**
      * @param args the command line arguments
      */
@@ -477,26 +512,27 @@ System.exit(0);        // TODO add your handling code here:
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmCiudad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmCiudad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmCiudad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmCiudad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-    
+       
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmCiudad().setVisible(true);
+                new FrmUsuario().setVisible(true);
             }
         });
     }
-   Ciudad ciudad ;
+   Usuario usuario ;
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable TablaListarCiudad;
+    private javax.swing.JTable TablaListarescuela;
     private javax.swing.JButton bntImprimir;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEliminar;
@@ -514,10 +550,12 @@ System.exit(0);        // TODO add your handling code here:
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel lblBuscarCodigo;
-    private javax.swing.JLabel lblCodigofacultad1;
+    private javax.swing.JLabel lblCodigo;
+    private javax.swing.JLabel lblCodigosicoa;
     private javax.swing.JLabel lblNombre;
-    private javax.swing.JTextField txtBuscarcodigo;
+    private javax.swing.JTextField txtClave;
     private javax.swing.JTextField txtCodigo;
+    private javax.swing.JTextField txtCodigobuscar;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }
