@@ -327,9 +327,9 @@ System.exit(0);        // TODO add your handling code here:
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-//Menu obj=new Menu();
-//        obj.setVisible(true);
-//        dispose();        // TODO add your handling code here:
+Menu obj=new Menu();
+        obj.setVisible(true);
+        dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
