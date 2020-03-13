@@ -21,7 +21,7 @@ public class FEmpresa {
         boolean eje = false;
         try {
             ArrayList<Parametro> lstP = new ArrayList<Parametro>();
-            String sql = "select * from public.insertar_empresa(?,?,?,?,?,?,?,?,?)";
+            String sql = "select * from public.empresa_insertar(?,?,?,?,?,?,?,?,?)";
             
             
             lstP.add(new Parametro(1, empresa.getIdempresa()));
@@ -49,7 +49,7 @@ public class FEmpresa {
         Empresa empresa = null;
         try {
             while (rs.next()) {
-                empresa = new Empresa(rs.getInt("pidempresa"), rs.getInt("pidciudad"), rs.getString("pnombreempresa"), rs.getString("pdireccion1"), rs.getString("pdireccion2"), rs.getString("pestado"),rs.getString("psitioweb"),rs.getString("pemail"),rs.getString("telefono"));
+                empresa = new Empresa(rs.getInt("pidempresa"), rs.getInt("pidciudad"), rs.getString("pnombreempresa"), rs.getString("pdireccion1"), rs.getString("pdireccion2"), rs.getString("pestado"),rs.getString("psitioweb"),rs.getString("pemail"),rs.getString("ptelefono"));
                 lst.add(empresa);
             }
         } catch (Exception e) {
