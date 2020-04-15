@@ -8,6 +8,7 @@ package Funciones;
 import Entidades.Codpago;
 import accesodatos.AccesoDatos;
 import accesodatos.ConjuntoResultado;
+import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -15,12 +16,12 @@ import java.util.ArrayList;
  *
  * @author sairy
  */
-public class FCodPago {
+public class FCodPago implements Serializable{
  public static boolean Insertar(Codpago codpago) throws Exception {
         boolean eje = false;
         try {
             ArrayList<accesodatos.Parametro> lstP = new ArrayList<accesodatos.Parametro>();
-            String sql = "select * from public.codpago_insertar(?,?)";
+            String sql = "select * from public.codigopago_insertar(?,?)";
             
             
             lstP.add(new accesodatos.Parametro(1, codpago.getIdcodpago()));
@@ -55,7 +56,7 @@ public class FCodPago {
     public static ArrayList<Codpago> ObtenerCodpagoes() throws Exception {
         ArrayList<Codpago> lst = new ArrayList<Codpago>();
         try {
-            String sql = "select * from public.codpago_buscartodos()";
+            String sql = "select * from public.codigopago_buscartodos()";
             ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql);
             lst = llenarCodpagoes(rs);
             rs = null;
@@ -70,7 +71,7 @@ public class FCodPago {
         Codpago lst;
         try {
             ArrayList<accesodatos.Parametro> lstP = new ArrayList<accesodatos.Parametro>();
-            String sql = "select * from public.codpago_buscarporid(?)";
+            String sql = "select * from public.codigopago_buscarporid(?)";
             lstP.add(new accesodatos.Parametro(1, codigo));
             ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql, lstP);
             lst = new Codpago();
@@ -86,7 +87,7 @@ public class FCodPago {
         boolean eje = false;
         try {
             ArrayList<accesodatos.Parametro> lstP = new ArrayList<accesodatos.Parametro>();
-            String sql = "select * from public.codpago_editar(?,?)";
+            String sql = "select * from public.codigopago_editar(?,?)";
            
             lstP.add(new accesodatos.Parametro(1, codpago.getIdcodpago()));
             lstP.add(new accesodatos.Parametro(2, codpago.getCodpagonombre()));
@@ -107,7 +108,7 @@ public class FCodPago {
         boolean eje = false;
         try {
             ArrayList<accesodatos.Parametro> lstP = new ArrayList<accesodatos.Parametro>();
-            String sql = "select * from public.codpago_eliminar(?)";
+            String sql = "select * from public.codigopago_eliminar(?)";
             lstP.add(new accesodatos.Parametro(1, codpago.getIdcodpago()));
             ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql, lstP);
             while (rs.next()) {

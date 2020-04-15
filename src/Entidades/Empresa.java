@@ -108,5 +108,8 @@ public class Empresa {
     }
     
     
-    
+    @Override 
+    public String toString(){
+        return nombreempresa;
+    }
 }

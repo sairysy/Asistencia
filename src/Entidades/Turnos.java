@@ -90,5 +90,8 @@ public class Turnos {
         this.hora_salida = hora_salida;
     }
     
-  
+   @Override 
+    public String toString(){
+        return nombreturno;
+    }
 }

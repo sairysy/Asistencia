@@ -9,6 +9,7 @@ import Entidades.Usuario;
 import accesodatos.AccesoDatos;
 import accesodatos.ConjuntoResultado;
 import accesodatos.Parametro;
+import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -16,7 +17,7 @@ import java.util.ArrayList;
  *
  * @author sairy
  */
-public class FUsuario {
+public class FUsuario implements Serializable {
    public static boolean Insertar(Usuario usuario) throws Exception {
         boolean eje = false;
         try {

@@ -43,25 +43,25 @@ public class login extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
         getContentPane().add(txtUsuario);
-        txtUsuario.setBounds(159, 352, 160, 30);
+        txtUsuario.setBounds(200, 330, 160, 30);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Usuario:");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(40, 362, 57, 17);
+        jLabel3.setBounds(70, 330, 57, 17);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Contraseña:");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(40, 400, 85, 17);
+        jLabel4.setBounds(70, 400, 85, 17);
 
         Password.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -69,7 +69,7 @@ public class login extends javax.swing.JFrame {
             }
         });
         getContentPane().add(Password);
-        Password.setBounds(159, 390, 160, 30);
+        Password.setBounds(200, 390, 160, 30);
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton2.setText("Iniciar Sesión");
@@ -89,19 +89,19 @@ public class login extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(318, 11, 61, 25);
+        jButton1.setBounds(80, 480, 61, 25);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/User.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logo.png"))); // NOI18N
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(63, 54, 256, 256);
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logotipounach2015-01 (5).png"))); // NOI18N
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(10, 460, 160, 56);
+        jLabel2.setBounds(-60, 100, 470, 240);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/FondoAzul.png"))); // NOI18N
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, 0, 1024, 576);
+
+        jPanel1.setEnabled(false);
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(140, 30, 70, 80);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -176,7 +176,7 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

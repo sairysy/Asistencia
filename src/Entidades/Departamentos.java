@@ -11,17 +11,17 @@ package Entidades;
  */
 public class Departamentos {
     private int iddepartamento;
-    private int idempresa;
-    private int idturno;
+    private Empresa empresa;
+    private Turnos turnos;
     private String nombredepartamento;
 
     public Departamentos() {
     }
 
-    public Departamentos(int iddepartamento, int idempresa, int idturno, String nombredepartamento) {
+    public Departamentos(int iddepartamento, Empresa empresa, Turnos turnos, String nombredepartamento) {
         this.iddepartamento = iddepartamento;
-        this.idempresa = idempresa;
-        this.idturno = idturno;
+        this.empresa = empresa;
+        this.turnos = turnos;
         this.nombredepartamento = nombredepartamento;
     }
 
@@ -33,20 +33,20 @@ public class Departamentos {
         this.iddepartamento = iddepartamento;
     }
 
-    public int getIdempresa() {
-        return idempresa;
+    public Empresa getEmpresa() {
+        return empresa;
     }
 
-    public void setIdempresa(int idempresa) {
-        this.idempresa = idempresa;
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
     }
 
-    public int getIdturno() {
-        return idturno;
+    public Turnos getTurnos() {
+        return turnos;
     }
 
-    public void setIdturno(int idturno) {
-        this.idturno = idturno;
+    public void setTurnos(Turnos turnos) {
+        this.turnos = turnos;
     }
 
     public String getNombredepartamento() {
@@ -56,6 +56,8 @@ public class Departamentos {
     public void setNombredepartamento(String nombredepartamento) {
         this.nombredepartamento = nombredepartamento;
     }
-    
-    
+ @Override 
+    public String toString(){
+        return nombredepartamento;
+    }
 }
